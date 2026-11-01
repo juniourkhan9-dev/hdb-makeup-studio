@@ -1,0 +1,2686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDB Makeup Studio - Professional Beauty & Hair Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <style>
+    :root {
+      --primary: #c97a1e;
+      --primary-hover: #b06815;
+      --accent-brown: #825827;
+      --dark: #0f0b08;
+      --dark-card: #18120d;
+      --border-card: #2c2219;
+      --cream: #fffcfb;
+      --courses-bg: #f5ede4; /* Distinctive soft warm cream background shown in user screenshot */
+      --text-muted: #9c9288;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+      pointer-events: none;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #0d0906;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header Wrapper connected to top 0 */
+    .site-header-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      transition: background 0.4s ease;
+    }
+
+    /* When hovering on mega-menu or when active, header smoothly turns solid black from top: 0 */
+    .site-header-wrapper:has(.has-mega-menu:hover),
+    .site-header-wrapper:has(.mega-menu-panel:hover),
+    .site-header-wrapper.mega-menu-active {
+      background: #0f0b08;
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 48px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .top-bar-socials {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .top-bar-socials a {
+      color: rgba(255, 255, 255, 0.75);
+      transition: color 0.2s;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .top-bar-socials a:hover {
+      color: #fff;
+    }
+
+    .top-bar-info {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .top-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Main Navigation attached right below top-bar */
+    .nav-header {
+      position: relative;
+      width: 100%;
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .brand-logo .logo-icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #d18817 0%, #a86207 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 15px;
+      box-shadow: 0 4px 12px rgba(209, 136, 23, 0.4);
+    }
+
+    .brand-logo .brand-text {
+      font-family: var(--font-heading);
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    /* ========================================================
+       MEGA MENU DROPDOWN (CONNECTED FROM TOP 0 / HALF SCREEN)
+       ======================================================== */
+    .has-mega-menu {
+      position: static;
+    }
+
+    .has-mega-menu > a {
+      position: relative;
+      padding: 10px 0;
+    }
+
+    .has-mega-menu > a i {
+      transition: transform 0.4s ease, color 0.3s ease;
+    }
+
+    .has-mega-menu:hover > a {
+      color: #d18817;
+    }
+
+    .has-mega-menu:hover > a i {
+      transform: rotate(180deg);
+      color: #d18817;
+    }
+
+    /* Fixed full-width dropdown attached directly below nav header, half screen height */
+    .mega-menu-panel {
+      position: fixed;
+      top: 104px;
+      left: 0;
+      width: 100vw;
+      max-height: 54vh;
+      background: #0f0b08;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.95);
+      padding: 28px 56px 36px;
+      z-index: 9999;
+      overflow-y: auto;
+      
+      /* Smooth slide from top to bottom */
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    /* Active state when hovering link OR when hovering over dropdown itself */
+    .has-mega-menu:hover .mega-menu-panel,
+    .mega-menu-panel:hover,
+    .has-mega-menu.is-active .mega-menu-panel {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mega-menu-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) 250px;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .mega-column h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #d18817;
+      margin-bottom: 18px;
+    }
+
+    .mega-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mega-links-list a {
+      color: #eae5de;
+      font-size: 13.5px;
+      font-weight: 400;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .mega-links-list a i {
+      font-size: 9px;
+      color: #d18817;
+      opacity: 0.85;
+      transition: transform 0.25s ease;
+    }
+
+    .mega-links-list a:hover {
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+
+    .mega-links-list a:hover i {
+      transform: translateX(2px);
+    }
+
+    /* Right Promo Card inside Mega Menu */
+    .mega-promo-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      display: flex;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .mega-promo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    .mega-promo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 14px;
+    }
+
+    .btn-primary {
+      background: #c97a1e;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14.5px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #e08b26;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 122, 30, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14.5px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
+    }
+
+    /* ========================================================
+       HERO & PARALLAX BACKGROUND SECTION
+       ======================================================== */
+    .hero-viewport {
+      position: relative;
+      width: 100%;
+      min-height: 150vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 170px 48px 120px;
+    }
+
+    .hero-bg-container {
+      position: absolute;
+      top: -10%;
+      left: 0;
+      width: 100%;
+      height: 155%;
+      z-index: 1;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .hero-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
+    .hero-overlay-horizontal {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(90deg, rgba(15, 11, 8, 0.94) 0%, rgba(15, 11, 8, 0.75) 45%, rgba(15, 11, 8, 0.1) 68%, rgba(0, 0, 0, 0) 100%);
+      pointer-events: none;
+    }
+
+    .hero-overlay-vertical {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(180deg, rgba(15, 11, 8, 0.5) 0%, rgba(15, 11, 8, 0) 25%, rgba(15, 11, 8, 0.2) 70%, rgba(15, 11, 8, 0.95) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 660px;
+      margin-left: 5vw;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(44px, 5.2vw, 68px);
+      line-height: 1.12;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 22px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.82);
+      margin-bottom: 34px;
+      max-width: 520px;
+      font-weight: 400;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+
+    .hero-social-proof {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .student-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .student-avatars img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2.5px solid #140e0a;
+      margin-left: -10px;
+      object-fit: cover;
+    }
+
+    .student-avatars img:first-child {
+      margin-left: 0;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .stars {
+      color: #f59e0b;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .sub-proof {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ========================================================
+       FEATURE STATS STRIP
+       ======================================================== */
+    .features-strip {
+      position: relative;
+      z-index: 20;
+      background: #734819;
+      background: linear-gradient(135deg, #7a4d1b 0%, #683f14 100%);
+      padding: 30px 48px;
+      box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .features-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #ffffff;
+    }
+
+    /* ========================================================
+       PAGE CONTENT WRAPPER
+       ======================================================== */
+    .page-content-wrapper {
+      position: relative;
+      z-index: 20;
+      background: #ffffff;
+      color: #1a1410;
+    }
+
+    /* ========================================================
+       ABOUT SECTION: PINNED SCREEN WITH STACKING CARDS
+       ======================================================== */
+    .about-pinned-track {
+      position: relative;
+      height: 420vh;
+      background: #ffffff;
+    }
+
+    .about-sticky-window {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 48px;
+      overflow: hidden;
+    }
+
+    .about-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-image-deck {
+      position: relative;
+      width: 100%;
+      height: 540px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.14);
+      background: #1a130e;
+    }
+
+    .about-deck-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+      box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.35);
+      border-radius: 20px;
+      overflow: hidden;
+      transform: translate3d(0, 100%, 0);
+    }
+
+    .about-deck-slide:first-child {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .about-deck-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 20%, rgba(0,0,0,0.3) 100%);
+      pointer-events: none;
+    }
+
+    .deck-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 50;
+      background: rgba(15, 11, 8, 0.75);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .deck-counter span.active-num {
+      color: var(--primary);
+    }
+
+    .about-text-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 3.5vw, 46px);
+      line-height: 1.2;
+      color: #120d09;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .about-text-typed {
+      color: #635b54;
+      font-size: 17px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+      min-height: 120px;
+    }
+
+    .typed-word {
+      display: inline-block;
+      opacity: 0.15;
+      transform: translateY(4px);
+      transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+      color: #b5ada5;
+      margin-right: 4px;
+    }
+
+    .typed-word.active {
+      opacity: 1;
+      transform: translateY(0);
+      color: #3b332b;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.15em;
+      background-color: var(--primary);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .author-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      transition: opacity 0.5s ease;
+    }
+
+    .author-details h4 {
+      font-size: 18px;
+      color: #120d09;
+      margin-bottom: 4px;
+    }
+
+    .author-details span {
+      font-size: 13.5px;
+      color: #8c827a;
+    }
+
+    .signature-img {
+      height: 44px;
+      width: auto;
+      opacity: 0.8;
+    }
+
+    .deck-progress-pills {
+      display: flex;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .deck-pill {
+      height: 4px;
+      width: 38px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.12);
+      transition: background 0.3s ease, width 0.3s ease;
+    }
+
+    .deck-pill.active {
+      background: var(--primary);
+      width: 55px;
+    }
+
+    /* ========================================================
+       COURSES SECTION (Distinct Warm Soft Cream Background)
+       Ultra-Smooth 2-second Scroll Fade-in Header Elements
+       ======================================================== */
+    .courses-section {
+      padding: 130px 48px 120px;
+      background-color: var(--courses-bg); /* Distinct separate page color */
+      position: relative;
+    }
+
+    .section-header-centered {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 70px;
+    }
+
+    /* 2-second silky fade-in with transform */
+    .courses-main-title {
+      font-family: var(--font-heading);
+      font-size: clamp(38px, 4.2vw, 56px);
+      line-height: 1.15;
+      font-weight: 500;
+      color: #120d09;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .courses-subtitle {
+      font-size: 16.5px;
+      line-height: 1.65;
+      color: #6a625b;
+      max-width: 620px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+      will-change: opacity, transform;
+    }
+
+    /* Triggered state when scrolled into view */
+    .courses-main-title.fade-in-active,
+    .courses-subtitle.fade-in-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .courses-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    /* Course Card remains static (doesn't lift/zoom the whole box) */
+    .course-card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      padding: 16px;
+      transition: box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .course-card:hover {
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    /* The Image Wrapper has rounded corners and clips the zoom cleanly */
+    .course-thumb-box {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* Inner Image zooms deeply on hover (scale: 1.25) with smooth easing */
+    .course-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: transform;
+      display: block;
+    }
+
+    /* Hovering card zooms ONLY the image inside */
+    .course-card:hover .course-thumb-box img {
+      transform: scale(1.24);
+    }
+
+    .course-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      color: #925414;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 2;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .course-tag i {
+      color: #c97a1e;
+    }
+
+    .level-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: #faf3eb;
+      color: #9c6020;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .course-content {
+      padding: 6px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .course-content h3 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: #15100c;
+      margin-bottom: 12px;
+      line-height: 1.28;
+    }
+
+    .course-content p {
+      color: #6a625b;
+      font-size: 15px;
+      line-height: 1.62;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+
+    .course-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .link-details {
+      color: #120d09;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .link-details:hover {
+      color: var(--primary);
+    }
+
+    .btn-course-enroll {
+      background: #c97a1e;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-course-enroll:hover {
+      background: #b06815;
+    }
+
+    /* ========================================================
+       CREATED BY OUR STUDENTS (BEFORE / AFTER SECTION)
+       ======================================================== */
+    .students-section {
+      padding: 130px 48px 140px;
+      background-color: var(--courses-bg);
+      position: relative;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .students-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 65px;
+    }
+
+    .students-main-title {
+      font-family: var(--font-heading);
+      font-size: clamp(38px, 4.2vw, 56px);
+      line-height: 1.15;
+      font-weight: 500;
+      color: #120d09;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .students-subtitle {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #6a625b;
+      max-width: 580px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+      will-change: opacity, transform;
+    }
+
+    .students-main-title.fade-up-active,
+    .students-subtitle.fade-up-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .students-showcase-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 55px;
+    }
+
+    .showcase-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Left Tag Pill with connecting line */
+    .showcase-tag-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+      will-change: opacity, transform;
+    }
+
+    .showcase-tag-wrapper.fade-up-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .showcase-tag-pill {
+      background: #ffffff;
+      color: #120d09;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      width: 155px;
+    }
+
+    .showcase-tag-line {
+      position: absolute;
+      left: 155px;
+      right: -36px;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.12);
+      z-index: 1;
+    }
+
+    /* Right Before & After Cards Grid */
+    .before-after-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .ba-card {
+      background: #ffffff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      padding: 16px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.4s ease, opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      opacity: 0;
+      transform: translateY(45px);
+      will-change: opacity, transform;
+    }
+
+    .ba-card.fade-up-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ba-card.ba-card-delayed {
+      transition-delay: 0.2s;
+    }
+
+    .ba-card:hover {
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .ba-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .ba-image-box {
+      width: 100%;
+      height: 380px;
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #f0e6db;
+    }
+
+    .ba-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .ba-card:hover .ba-image-box img {
+      transform: scale(1.05);
+    }
+
+    .ba-label {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      color: #120d09;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .showcase-row { grid-template-columns: 1fr; gap: 20px; }
+      .showcase-tag-line { display: none; }
+      .ba-image-box { height: 300px; }
+    }
+
+    @media (max-width: 640px) {
+      .before-after-grid { grid-template-columns: 1fr; gap: 20px; }
+      .ba-image-box { height: 260px; }
+    }
+
+    /* ========================================================
+       HOW YOUR BEAUTY JOURNEY BEGINS (INTERACTIVE TIMELINE)
+       ======================================================== */
+    .journey-section {
+      padding: 130px 48px 140px;
+      background-color: #ffffff;
+      position: relative;
+    }
+
+    .journey-header {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 90px;
+    }
+
+    .journey-main-title {
+      font-family: var(--font-heading);
+      font-size: clamp(38px, 4.4vw, 58px);
+      line-height: 1.15;
+      color: #120d09;
+      margin-bottom: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .journey-subtitle {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #6a625b;
+      max-width: 640px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+      will-change: opacity, transform;
+    }
+
+    .journey-main-title.fade-up-active,
+    .journey-subtitle.fade-up-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .journey-timeline-wrapper {
+      max-width: 1140px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Central vertical timeline track with yellow fill on scroll */
+    .journey-timeline-line-track {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      bottom: 40px;
+      width: 2px;
+      transform: translateX(-50%);
+      background-color: #e8e2d9;
+      z-index: 1;
+    }
+
+    .journey-timeline-line-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background-color: #d18817;
+      transition: height 0.1s linear;
+    }
+
+    .journey-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .journey-step-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 90px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .journey-step-row.fade-up-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Step dot in center of track */
+    .journey-step-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      border: 3px solid #dcd5ca;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
+    }
+
+    .journey-step-row.passed .journey-step-dot {
+      background-color: #d18817;
+      border-color: #d18817;
+      box-shadow: 0 0 0 4px rgba(209, 136, 23, 0.2);
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    /* Step 2 reverses the visual order so image is on right and text on left */
+    .journey-step-row.step-reverse .journey-col-media {
+      order: 2;
+    }
+    .journey-step-row.step-reverse .journey-col-text {
+      order: 1;
+      text-align: left;
+    }
+
+    .journey-col-media {
+      display: flex;
+      justify-content: center;
+    }
+
+    .journey-image-card {
+      width: 100%;
+      max-width: 480px;
+      height: 310px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #f8f6f3;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    }
+
+    .journey-image-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .journey-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .journey-col-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 10px;
+    }
+
+    .journey-step-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #f7f3ed;
+      border: 1px solid #ebd9c8;
+      color: #6a625b;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      margin-bottom: 22px;
+    }
+
+    .journey-step-title {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 2.8vw, 40px);
+      line-height: 1.22;
+      color: #120d09;
+      margin-bottom: 16px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+    }
+
+    .journey-step-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #6a625b;
+      max-width: 440px;
+    }
+
+    @media (max-width: 900px) {
+      .journey-timeline-line-track {
+        left: 20px;
+        transform: none;
+      }
+      .journey-step-row {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-left: 55px;
+      }
+      .journey-step-dot {
+        left: 20px;
+        top: 24px;
+        transform: translate(-50%, 0);
+      }
+      .journey-step-row.step-reverse .journey-col-media {
+        order: 1;
+      }
+      .journey-step-row.step-reverse .journey-col-text {
+        order: 2;
+      }
+      .journey-image-card {
+        height: 250px;
+      }
+    }
+
+    /* ========================================================
+       SUCCESS STORIES FROM OUR STUDENTS SECTION
+       ======================================================== */
+    .success-section {
+      padding: 130px 48px 140px;
+      background-color: var(--courses-bg);
+      position: relative;
+    }
+
+    .success-header {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 65px;
+    }
+
+    .success-main-title {
+      font-family: var(--font-heading);
+      font-size: clamp(38px, 4.4vw, 58px);
+      line-height: 1.15;
+      color: #120d09;
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .success-subtitle {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #6a625b;
+      margin-bottom: 18px;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+      will-change: opacity, transform;
+    }
+
+    .success-rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #120d09;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+      will-change: opacity, transform;
+    }
+
+    .success-rating-badge .stars {
+      color: #e67e22;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    .success-rating-badge .count {
+      color: #8c827a;
+      font-weight: 400;
+      font-size: 13px;
+    }
+
+    .success-main-title.fade-up-active,
+    .success-subtitle.fade-up-active,
+    .success-rating-badge.fade-up-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .success-grid-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    /* Testimonial Cards Fade-in from bottom animation */
+    .success-card {
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 310px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      will-change: opacity, transform;
+    }
+
+    .success-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .success-card.fade-up-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered card delays */
+    .success-card:nth-child(1) { transition-delay: 0.1s; }
+    .success-card:nth-child(2) { transition-delay: 0.2s; }
+    .success-card:nth-child(3) { transition-delay: 0.3s; }
+    .success-card:nth-child(4) { transition-delay: 0.4s; }
+    .success-card:nth-child(5) { transition-delay: 0.5s; }
+    .success-card:nth-child(6) { transition-delay: 0.6s; }
+
+    /* White Text Card Variant */
+    .success-card.card-text {
+      background: #ffffff;
+      padding: 28px 26px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .card-author-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .author-info-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-name-wrap h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #120d09;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .author-name-wrap span {
+      font-size: 13px;
+      color: #7d736a;
+    }
+
+    .quote-icon {
+      color: #d18817;
+      font-size: 24px;
+      opacity: 0.85;
+    }
+
+    .card-stars {
+      color: #e67e22;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .card-quote-text {
+      font-size: 14.5px;
+      line-height: 1.62;
+      color: #4a433d;
+      flex-grow: 1;
+      margin-bottom: 20px;
+    }
+
+    .card-footer-course {
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      padding-top: 14px;
+    }
+
+    .card-footer-course .course-label {
+      font-size: 12px;
+      color: #9c9288;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .card-footer-course .course-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #120d09;
+    }
+
+    /* Video / Image Card Variant */
+    .success-card.card-media {
+      position: relative;
+    }
+
+    .card-media-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .success-card.card-media:hover .card-media-bg {
+      transform: scale(1.05);
+    }
+
+    .media-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.5) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      z-index: 2;
+    }
+
+    .media-card-top h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 2px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .media-card-top span {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .media-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d18817;
+      font-size: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .success-card.card-media:hover .media-play-btn {
+      transform: translate(-50%, -50%) scale(1.12);
+      background: #ffffff;
+    }
+
+    @media (max-width: 1024px) {
+      .success-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .success-grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Why Choose Beautyco */
+    .why-us-section {
+      padding: 120px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .feature-points-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .point-card {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .point-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(201, 122, 30, 0.12);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .point-info h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #15100c;
+      margin-bottom: 6px;
+    }
+
+    .point-info p {
+      color: #6a625b;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-banner {
+      position: relative;
+      background: #17110c;
+      color: #fff;
+      padding: 100px 48px;
+      overflow: hidden;
+    }
+
+    .cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cta-left {
+      max-width: 580px;
+    }
+
+    .cta-left h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 3.8vw, 48px);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .cta-left p {
+      font-size: 16.5px;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 34px;
+    }
+
+    .cta-bg-art {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 55%;
+      height: 100%;
+      background: url('https://framerusercontent.com/images/I2Knc6azcUd0mLHNqF6cRmdBg.png?width=1930&height=1164') right center / cover no-repeat;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d0906;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 60px 48px 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+    }
+
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      text-align: center;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .top-bar { padding: 12px 24px; }
+      .nav-header { padding: 14px 24px; top: 44px; }
+      .hero-viewport { padding: 150px 24px 80px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .about-container { grid-template-columns: 1fr; gap: 40px; }
+      .about-image-deck { height: 420px; }
+      .courses-grid { grid-template-columns: 1fr; gap: 24px; }
+      .why-us-section { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+      .cta-inner { flex-direction: column; text-align: center; gap: 30px; }
+      .cta-left { max-width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar { display: none; }
+      .nav-header { top: 0; padding: 18px 20px; }
+      .nav-links { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .about-sticky-window { padding: 40px 20px; }
+      .about-image-deck { height: 320px; }
+      .courses-section { padding: 80px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Wrapper for Seamless Top Integration -->
+  <header class="site-header-wrapper" id="siteHeader">
+    <!-- Top Utility Bar -->
+    <div class="top-bar">
+      <div class="top-bar-socials">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i>
+          <span>Unit 4, Lad mead Industrial Estate</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fa-solid fa-phone" style="color: var(--primary);"></i>
+          <span>+1(122)800 88 08</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="nav-header">
+      <a href="#" class="brand-logo">
+        <span class="logo-icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></span><span class="brand-text">HDB Makeup Studio</span>
+      </a>
+
+      <ul class="nav-links">
+        <li class="has-mega-menu">
+          <a href="#all-pages">All Pages <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-top: 2px;"></i></a>
+          <!-- Mega Menu Dropdown (Flush from Top 0 / Half Screen Height) -->
+          <div class="mega-menu-panel">
+            <div class="mega-menu-inner">
+              <!-- Column 1: MAIN PAGES -->
+              <div class="mega-column">
+                <h4>MAIN PAGES</h4>
+                <ul class="mega-links-list">
+                  <li><a href="#hero"><i class="fa-solid fa-chevron-right"></i> Homepage</a></li>
+                  <li><a href="#aboutTrack"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Courses</a></li>
+                  <li><a href="#students"><i class="fa-solid fa-chevron-right"></i> Student Works</a></li>
+                  <li><a href="#journey"><i class="fa-solid fa-chevron-right"></i> Our Process</a></li>
+                  <li><a href="#successStories"><i class="fa-solid fa-chevron-right"></i> Review</a></li>
+                  <li><a href="#enroll"><i class="fa-solid fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+              </div>
+
+              <!-- Column 2: INNER PAGES -->
+              <div class="mega-column">
+                <h4>INNER PAGES</h4>
+                <ul class="mega-links-list">
+                  <li><a href="#blog"><i class="fa-solid fa-chevron-right"></i> Blog [CMS]</a></li>
+                  <li><a href="#blog-details"><i class="fa-solid fa-chevron-right"></i> Blog Details [CMS]</a></li>
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Courses [CMS]</a></li>
+                  <li><a href="#courses-details"><i class="fa-solid fa-chevron-right"></i> Courses Details [CMS]</a></li>
+                  <li><a href="#privacy"><i class="fa-solid fa-chevron-right"></i> Privacy Policy</a></li>
+                </ul>
+              </div>
+
+              <!-- Column 3: COURSES -->
+              <div class="mega-column">
+                <h4>COURSES</h4>
+                <ul class="mega-links-list">
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Hair Styling</a></li>
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Hair Styling Program</a></li>
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Facial Training</a></li>
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Skincare & Esthetics</a></li>
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Special Makeup</a></li>
+                  <li><a href="#courses"><i class="fa-solid fa-chevron-right"></i> Beauty Success</a></li>
+                </ul>
+              </div>
+
+              <!-- Column 4: OTHER PAGES -->
+              <div class="mega-column">
+                <h4>OTHER PAGES</h4>
+                <ul class="mega-links-list">
+                  <li><a href="#instructors"><i class="fa-solid fa-chevron-right"></i> Our Instructors</a></li>
+                  <li><a href="#certifications"><i class="fa-solid fa-chevron-right"></i> Certification Programs</a></li>
+                  <li><a href="#internship"><i class="fa-solid fa-chevron-right"></i> Internship Program</a></li>
+                  <li><a href="#faqs"><i class="fa-solid fa-chevron-right"></i> FAQs</a></li>
+                  <li><a href="#locations"><i class="fa-solid fa-chevron-right"></i> Locations</a></li>
+                  <li><a href="#apply"><i class="fa-solid fa-chevron-right"></i> Apply Now</a></li>
+                </ul>
+              </div>
+
+              <!-- Column 5: Right Promo Card -->
+              <div class="mega-promo-card">
+                <img src="real_promo_card.png" alt="New Courses Starting Soon" class="mega-promo-img">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="#aboutTrack">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#successStories">Review</a></li>
+      </ul>
+
+      <a href="#enroll" class="btn-primary">Enroll Now</a>
+    </nav>
+  </header>
+
+  <!-- ========================================================
+       HERO SECTION WITH PARALLAX SMOOTH BACKGROUND
+       ======================================================== -->
+  <section class="hero-viewport" id="hero">
+    <!-- Parallax Background Element -->
+    <div class="hero-bg-container" id="heroBg">
+      <img 
+        src="https://framerusercontent.com/images/UOxAQOqhYg1xsOUfElVSBr67M28.png?width=3600&height=2528" 
+        alt="Hero Background Hair Wash" 
+        class="hero-bg-img"
+      >
+    </div>
+
+    <!-- Overlays -->
+    <div class="hero-overlay-horizontal"></div>
+    <div class="hero-overlay-vertical"></div>
+
+    <!-- Hero Content -->
+    <div class="hero-content" id="heroContent">
+      <h1 class="hero-title">Start your beauty career today</h1>
+      <p class="hero-subtitle">
+        Learn hands-on hair, makeup, and skincare. Get certified, build real skills, and start earning with confidence.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#enroll" class="btn-primary">Enroll Now</a>
+        <a href="#courses" class="btn-secondary">See Our Courses</a>
+      </div>
+
+      <div class="hero-social-proof">
+        <div class="student-avatars">
+          <img src="https://framerusercontent.com/images/6bqqQLemAnKPgwERzUY8vwaCOo.png?width=176&height=176" alt="Student 1">
+          <img src="https://framerusercontent.com/images/EcsGlI5el5JhKRyOdYxl5ZBK6Ow.png?width=176&height=176" alt="Student 2">
+          <img src="https://framerusercontent.com/images/X7bT3eqLbcGGa3YZgE8EU88mEc.png?width=176&height=176" alt="Student 3">
+        </div>
+        <div class="rating-row">
+          <span class="stars">★★★★★</span>
+          <strong>5 Rated</strong>
+        </div>
+        <div class="sub-proof">
+          500+ Certified Beauty Professional
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES STRIP (Gold/Brown Bar) -->
+  <section class="features-strip">
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div class="feature-title">Nationally<br>Accredited</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="feature-title">95%<br>Graduation Rate</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="feature-title">Industry<br>Leading Faculty</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-user-tie"></i></div>
+        <div class="feature-title">Top<br>Instructors</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PAGE CONTENT (Flows smoothly from under hero image)
+       ======================================================== -->
+  <main class="page-content-wrapper">
+
+    <!-- ========================================================
+         ABOUT SECTION: STACKING CARDS EFFECT
+         One image slides up from bottom over the previous image!
+         ======================================================== -->
+    <section class="about-pinned-track" id="aboutTrack">
+      <div class="about-sticky-window" id="aboutSticky">
+        <div class="about-container">
+
+          <!-- Left: Deck with 4 stacked cards sliding up over each other -->
+          <div class="about-image-deck">
+            <!-- Slide 1 (Base): Hair styling with comb (User uploaded) -->
+            <div class="about-deck-slide" style="z-index: 1;">
+              <img src="user_image.png" alt="Hair Styling Combing">
+              <div class="slide-vignette"></div>
+            </div>
+
+            <!-- Slide 2: Slides UP from bottom over Slide 1 -->
+            <div class="about-deck-slide" style="z-index: 2;">
+              <img src="https://framerusercontent.com/images/4bnlrpYF48wkHZj5h73GCR8kVMo.png?scale-down-to=1024&width=1164&height=1384" alt="About Salon Masterclass">
+              <div class="slide-vignette"></div>
+            </div>
+
+            <!-- Slide 3: Slides UP from bottom over Slide 2 -->
+            <div class="about-deck-slide" style="z-index: 3;">
+              <img src="https://framerusercontent.com/images/rhr6sWDG4JQehZifHWeHq0pJeL8.png?width=1164&height=1280" alt="Hair Cutting Workshop">
+              <div class="slide-vignette"></div>
+            </div>
+
+            <!-- Slide 4: Slides UP from bottom over Slide 3 -->
+            <div class="about-deck-slide" style="z-index: 4;">
+              <img src="https://framerusercontent.com/images/TD3GK8wOWsSFpjkcckVB7yqJXMA.png?scale-down-to=1024&width=1164&height=1264" alt="Live Salon Experience">
+              <div class="slide-vignette"></div>
+            </div>
+
+            <!-- Bottom Counter Badge -->
+            <div class="deck-counter">
+              <i class="fa-regular fa-image" style="color: var(--primary);"></i>
+              <span>Gallery <span class="active-num" id="activeSlideNum">01</span> / 04</span>
+            </div>
+          </div>
+
+          <!-- Right: Text with live scroll-driven typing & fade effect -->
+          <div class="about-text-content">
+            <span class="section-eyebrow">About HDB Makeup Studio</span>
+            <h2 class="section-title">A place where passion becomes your purpose</h2>
+
+            <!-- Word-by-word typed text driven by scroll position -->
+            <p class="about-text-typed" id="typedParagraph">
+              <!-- Words injected dynamically via JS -->
+            </p>
+
+            <div class="author-info" id="aboutAuthor">
+              <div class="author-details">
+                <h4>Sam Peterson</h4>
+                <span>Founder & Director, HDB Makeup Studio</span>
+              </div>
+              <img src="https://framerusercontent.com/images/fOAP6XyltellOAjklFsLmfEri0U.svg?width=196&height=70" alt="Signature" class="signature-img">
+            </div>
+
+            <!-- 4-step progress pills -->
+            <div class="deck-progress-pills">
+              <div class="deck-pill active"></div>
+              <div class="deck-pill"></div>
+              <div class="deck-pill"></div>
+              <div class="deck-pill"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         POPULAR COURSES SECTION
+         - Distinct warm cream background color
+         - Exactly requested 2-second silky smooth scroll fade-in for:
+           'Our popular courses' and 'Each program combines...'
+         ======================================================== -->
+    <section class="courses-section" id="courses">
+      <div class="section-header-centered" id="coursesHeader">
+        <h2 class="courses-main-title" id="coursesTitle">Our popular courses</h2>
+        <p class="courses-subtitle" id="coursesSubtitle">
+          Each program combines practical training with expert guidance so you can learn real techniques used in professional salons and studios.
+        </p>
+      </div>
+
+      <div class="courses-grid">
+        <!-- Card 1 -->
+        <div class="course-card">
+          <div class="course-thumb-box">
+            <img src="https://framerusercontent.com/images/rhr6sWDG4JQehZifHWeHq0pJeL8.png?width=768&height=498" alt="Hair Styling">
+            <span class="course-tag"><i class="fa-regular fa-clock"></i> Hair styling course</span>
+          </div>
+          <div class="course-content">
+            <span class="level-badge">Beginner</span>
+            <h3>Hair styling course</h3>
+            <p>Master cutting fundamentals, styling techniques, and everyday salon workflows from scratch.</p>
+            <div class="course-card-footer">
+              <a href="#" class="link-details">View Details <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="#enroll" class="btn-course-enroll">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="course-card">
+          <div class="course-thumb-box">
+            <img src="user_image.png" alt="Hair Styling Program">
+            <span class="course-tag"><i class="fa-regular fa-clock"></i> Hair styling program</span>
+          </div>
+          <div class="course-content">
+            <span class="level-badge">Advanced</span>
+            <h3>Hair styling program</h3>
+            <p>Elevate your craft with complex coloring, highlights, texturing, and bridal styling mastery.</p>
+            <div class="course-card-footer">
+              <a href="#" class="link-details">View Details <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="#enroll" class="btn-course-enroll">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="course-card">
+          <div class="course-thumb-box">
+            <img src="https://framerusercontent.com/images/ucwKXu8Gu6S030Rej8nd4R9TEY.png?width=768&height=498" alt="Skin Care">
+            <span class="course-tag"><i class="fa-regular fa-clock"></i> Skin care & facial</span>
+          </div>
+          <div class="course-content">
+            <span class="level-badge">Expert</span>
+            <h3>Skin care & facial training</h3>
+            <p>In-depth dermatological basics, deep cleansing rituals, facial therapies, and modern skincare technology.</p>
+            <div class="course-card-footer">
+              <a href="#" class="link-details">View Details <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="#enroll" class="btn-course-enroll">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CREATED BY OUR STUDENTS (BEFORE & AFTER SHOWCASE)
+         ======================================================== -->
+    <section class="students-section" id="students">
+      <div class="students-header">
+        <h2 class="students-main-title">Created by our students</h2>
+        <p class="students-subtitle">
+          It's not just practice—it's real experience that prepares them for professional success in the beauty industry.
+        </p>
+      </div>
+
+      <div class="students-showcase-container">
+
+        <!-- Row 1: Hair Color -->
+        <div class="showcase-row">
+          <div class="showcase-tag-wrapper">
+            <div class="showcase-tag-pill">Hair Color</div>
+            <div class="showcase-tag-line"></div>
+          </div>
+          <div class="before-after-grid">
+            <!-- Before Card -->
+            <div class="ba-card">
+              <div class="ba-image-box">
+                <img src="hair_before.png" alt="Hair Color Before">
+              </div>
+              <span class="ba-label">Before</span>
+            </div>
+            <!-- After Card -->
+            <div class="ba-card ba-card-delayed">
+              <div class="ba-image-box">
+                <img src="hair_after.png?v=2" alt="Hair Color After">
+              </div>
+              <span class="ba-label">After</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Face makeup -->
+        <div class="showcase-row">
+          <div class="showcase-tag-wrapper">
+            <div class="showcase-tag-pill">Face makeup</div>
+            <div class="showcase-tag-line"></div>
+          </div>
+          <div class="before-after-grid">
+            <!-- Before Card -->
+            <div class="ba-card">
+              <div class="ba-image-box">
+                <img src="makeup_before.png?v=2" alt="Face Makeup Before">
+              </div>
+              <span class="ba-label">Before</span>
+            </div>
+            <!-- After Card -->
+            <div class="ba-card ba-card-delayed">
+              <div class="ba-image-box">
+                <img src="makeup_after.png?v=2" alt="Face Makeup After">
+              </div>
+              <span class="ba-label">After</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         HOW YOUR BEAUTY JOURNEY BEGINS SECTION
+         Interactive scroll timeline with yellow progress fill
+         ======================================================== -->
+    <section class="journey-section" id="journey">
+      <div class="journey-header">
+        <h2 class="journey-main-title">How your beauty journey begins</h2>
+        <p class="journey-subtitle">
+          From day one, you'll gain hands-on experience through live demonstrations, guided practice sessions, and real salon-style training.
+        </p>
+      </div>
+
+      <div class="journey-timeline-wrapper" id="journeyTimeline">
+        <!-- Vertical timeline line that fills yellow on scroll -->
+        <div class="journey-timeline-line-track" id="journeyLineTrack">
+          <div class="journey-timeline-line-fill" id="journeyLineFill"></div>
+        </div>
+
+        <div class="journey-steps-list">
+          <!-- Step 01: Enroll Courses -->
+          <div class="journey-step-row" data-step="1">
+            <div class="journey-step-dot"></div>
+            <div class="journey-col-media">
+              <div class="journey-image-card">
+                <img src="journey_step1.png" alt="Enroll Courses">
+              </div>
+            </div>
+            <div class="journey-col-text">
+              <span class="journey-step-badge">Step 01</span>
+              <h3 class="journey-step-title">Enroll Courses</h3>
+              <p class="journey-step-desc">
+                Take the first step toward becoming a certified beauty professional. Join to build confidence, creativity.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 02: Practice On Models (Reversed: text left, image right) -->
+          <div class="journey-step-row step-reverse" data-step="2">
+            <div class="journey-step-dot"></div>
+            <div class="journey-col-media">
+              <div class="journey-image-card">
+                <img src="journey_step2.png" alt="Practice On Models">
+              </div>
+            </div>
+            <div class="journey-col-text">
+              <span class="journey-step-badge">Step 02</span>
+              <h3 class="journey-step-title">Practice On Models</h3>
+              <p class="journey-step-desc">
+                Build confidence through hands-on practice with real models during training sessions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 03: Get Certified & Get Hired -->
+          <div class="journey-step-row" data-step="3">
+            <div class="journey-step-dot"></div>
+            <div class="journey-col-media">
+              <div class="journey-image-card">
+                <img src="journey_step3.png" alt="Get Certified & Get Hired">
+              </div>
+            </div>
+            <div class="journey-col-text">
+              <span class="journey-step-badge">Step 03</span>
+              <h3 class="journey-step-title">Get Certified & Get Hired</h3>
+              <p class="journey-step-desc">
+                We prepare students for real career opportunities through practical experience, portfolio development.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SUCCESS STORIES FROM OUR STUDENTS SECTION
+         ======================================================== -->
+    <section class="success-section" id="successStories">
+      <div class="success-header">
+        <h2 class="success-main-title">Success stories from<br>our students</h2>
+        <p class="success-subtitle">
+          Our students' success is the true reflection of our training quality.
+        </p>
+        <div class="success-rating-badge">
+          <span>4.9</span>
+          <span class="stars">★★★★★</span>
+          <span class="count">(500 reviews)</span>
+        </div>
+      </div>
+
+      <div class="success-grid-container">
+        <!-- Card 1: Zoya Millan (Text Review) -->
+        <div class="success-card card-text">
+          <div>
+            <div class="card-author-header">
+              <div class="author-info-left">
+                <img src="avatar_zoya.png" alt="Zoya Millan" class="author-avatar">
+                <div class="author-name-wrap">
+                  <h4>Zoya Millan</h4>
+                  <span>Hair Styling</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-quote-right quote-icon"></i>
+            </div>
+            <div class="card-stars">★★★★★</div>
+            <p class="card-quote-text">
+              "I joined with zero experience, and within a few months I gained the confidence to start working as a freelance hair styling. The practical classes made all the difference."
+            </p>
+          </div>
+          <div class="card-footer-course">
+            <span class="course-label">Course Completed :</span>
+            <span class="course-name">Hair Styling Course</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Anya Petrova (Video Card) -->
+        <div class="success-card card-media">
+          <img src="student_anya.png" alt="Anya Petrova" class="card-media-bg">
+          <div class="media-card-overlay">
+            <div class="media-card-top">
+              <h4>Anya Petrova</h4>
+              <span>Makeup Artistry</span>
+            </div>
+            <div class="media-play-btn">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Chloe Edwards (Text Review) -->
+        <div class="success-card card-text">
+          <div>
+            <div class="card-author-header">
+              <div class="author-info-left">
+                <img src="avatar_chloe.png" alt="Chloe Edwards" class="author-avatar">
+                <div class="author-name-wrap">
+                  <h4>Chloe Edwards</h4>
+                  <span>Skin Care Expert</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-quote-right quote-icon"></i>
+            </div>
+            <div class="card-stars">★★★★☆</div>
+            <p class="card-quote-text">
+              "The trainers explained everything clearly and supported me through out my learning journey. I provide skincare services and earn from home-based clients."
+            </p>
+          </div>
+          <div class="card-footer-course">
+            <span class="course-label">Course Completed :</span>
+            <span class="course-name">Skin Therapy Program</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Lena Loreal (Video Card) -->
+        <div class="success-card card-media">
+          <img src="student_lena.png" alt="Lena Loreal" class="card-media-bg">
+          <div class="media-card-overlay">
+            <div class="media-card-top">
+              <h4>Lena Loreal</h4>
+              <span>Expert Beauty & Facial</span>
+            </div>
+            <div class="media-play-btn">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Mily martin (Text Review) -->
+        <div class="success-card card-text">
+          <div>
+            <div class="card-author-header">
+              <div class="author-info-left">
+                <img src="avatar_mily.png" alt="Mily martin" class="author-avatar">
+                <div class="author-name-wrap">
+                  <h4>Mily martin</h4>
+                  <span>Expert Makeup Artist</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-quote-right quote-icon"></i>
+            </div>
+            <div class="card-stars">★★★★☆</div>
+            <p class="card-quote-text">
+              "The trainers explained everything clearly and supported me through out my learning journey. I provide skincare services and earn from home-based clients."
+            </p>
+          </div>
+          <div class="card-footer-course">
+            <span class="course-label">Course Completed :</span>
+            <span class="course-name">Advanced Makeup Masterclass</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Latania Eva (Video Card) -->
+        <div class="success-card card-media">
+          <img src="student_latania.png" alt="Latania Eva" class="card-media-bg">
+          <div class="media-card-overlay">
+            <div class="media-card-top">
+              <h4>Latania Eva</h4>
+              <span>Expert Hair Stylist</span>
+            </div>
+            <div class="media-play-btn">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-banner" id="enroll">
+      <div class="cta-inner">
+        <div class="cta-left">
+          <h2>Ready to turn your passion into a career?</h2>
+          <p>Take the first step today. Your journey from passion to profession starts right here at HDB Makeup Studio.</p>
+          <a href="#" class="btn-primary" style="padding: 16px 36px; font-size: 16px;">Enroll Now</a>
+        </div>
+      </div>
+      <div class="cta-bg-art"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <a href="#" class="brand-logo">
+        <span class="logo-icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></span><span class="brand-text">HDB Makeup Studio</span>
+      </a>
+      <div class="top-bar-socials">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2026 HDB Makeup Studio. All rights reserved. Crafted with smooth momentum scrolling.
+    </div>
+  </footer>
+
+  <!-- Lenis Smooth Scrolling Library -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script>
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.25,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    // Parallax Hero
+    const heroBg = document.getElementById('heroBg');
+    const heroContent = document.getElementById('heroContent');
+
+    // About Section
+    const aboutTrack = document.getElementById('aboutTrack');
+    const deckSlides = document.querySelectorAll('.about-deck-slide');
+    const deckPills = document.querySelectorAll('.deck-pill');
+    const activeSlideNum = document.getElementById('activeSlideNum');
+    const typedParagraph = document.getElementById('typedParagraph');
+    const aboutAuthor = document.getElementById('aboutAuthor');
+
+    // Courses Section Fade Elements
+    const coursesTitle = document.getElementById('coursesTitle');
+    const coursesSubtitle = document.getElementById('coursesSubtitle');
+    const coursesHeader = document.getElementById('coursesHeader');
+
+    // Split text into individual words for scroll-driven typewriter effect
+    const fullText = "HDB Makeup Studio was founded on the belief that beauty education should be inspiring, hands-on, and accessible. Over the years, we've trained hundreds of aspiring stylists and estheticians to turn their creative spark into thriving careers with masterclasses, personalized mentorship, and real studio exposure.";
+    const words = fullText.split(' ');
+    
+    // Inject words wrapped in spans
+    if (typedParagraph) {
+      typedParagraph.innerHTML = words.map(w => `<span class="typed-word">${w}</span>`).join(' ') + `<span class="typing-cursor"></span>`;
+    }
+    const wordElements = document.querySelectorAll('.typed-word');
+
+    // Combined scroll handler
+    lenis.on('scroll', ({ scroll }) => {
+      // 1. Hero Parallax
+      if (heroBg) {
+        const parallaxOffset = scroll * 0.35;
+        heroBg.style.transform = `translate3d(0, ${parallaxOffset}px, 0)`;
+      }
+      if (heroContent) {
+        const textOffset = scroll * 0.25;
+        const textOpacity = Math.max(0, 1 - scroll / 1000);
+        heroContent.style.transform = `translate3d(0, ${textOffset}px, 0)`;
+        heroContent.style.opacity = textOpacity;
+      }
+
+      // 2. About Section: Card-over-Card Stacking Animation
+      if (aboutTrack) {
+        const trackRect = aboutTrack.getBoundingClientRect();
+        const trackTop = -trackRect.top;
+        const trackScrollableDist = aboutTrack.offsetHeight - window.innerHeight;
+
+        if (trackTop >= 0 && trackTop <= trackScrollableDist) {
+          const progress = Math.min(1, Math.max(0, trackTop / trackScrollableDist));
+          
+          deckSlides[0].style.transform = 'translate3d(0, 0, 0)';
+
+          let p1 = Math.min(1, Math.max(0, progress / 0.33));
+          let y1 = (1 - p1) * 100;
+          deckSlides[1].style.transform = `translate3d(0, ${y1}%, 0)`;
+
+          let p2 = Math.min(1, Math.max(0, (progress - 0.33) / 0.33));
+          let y2 = (1 - p2) * 100;
+          deckSlides[2].style.transform = `translate3d(0, ${y2}%, 0)`;
+
+          let p3 = Math.min(1, Math.max(0, (progress - 0.66) / 0.34));
+          let y3 = (1 - p3) * 100;
+          deckSlides[3].style.transform = `translate3d(0, ${y3}%, 0)`;
+
+          let activeIndex = 0;
+          if (progress >= 0.70) activeIndex = 3;
+          else if (progress >= 0.36) activeIndex = 2;
+          else if (progress >= 0.05) activeIndex = 1;
+          else activeIndex = 0;
+
+          if (activeSlideNum) {
+            activeSlideNum.innerText = `0${activeIndex + 1}`;
+          }
+
+          deckPills.forEach((pill, i) => {
+            if (i === activeIndex) {
+              pill.classList.add('active');
+            } else {
+              pill.classList.remove('active');
+            }
+          });
+
+          const wordsToReveal = Math.floor(progress * wordElements.length * 1.05);
+          wordElements.forEach((el, i) => {
+            if (i <= wordsToReveal) {
+              el.classList.add('active');
+            } else {
+              el.classList.remove('active');
+            }
+          });
+
+          if (aboutAuthor) {
+            const authorOpacity = progress > 0.6 ? Math.min(1, (progress - 0.6) / 0.35) : 0.3;
+            aboutAuthor.style.opacity = authorOpacity;
+          }
+
+        } else if (trackTop < 0) {
+          deckSlides[0].style.transform = 'translate3d(0, 0, 0)';
+          deckSlides[1].style.transform = 'translate3d(0, 100%, 0)';
+          deckSlides[2].style.transform = 'translate3d(0, 100%, 0)';
+          deckSlides[3].style.transform = 'translate3d(0, 100%, 0)';
+          if (activeSlideNum) activeSlideNum.innerText = '01';
+          deckPills.forEach((p, i) => i === 0 ? p.classList.add('active') : p.classList.remove('active'));
+          wordElements.forEach(el => el.classList.remove('active'));
+          if (aboutAuthor) aboutAuthor.style.opacity = 0.3;
+        } else if (trackTop > trackScrollableDist) {
+          deckSlides[0].style.transform = 'translate3d(0, 0, 0)';
+          deckSlides[1].style.transform = 'translate3d(0, 0, 0)';
+          deckSlides[2].style.transform = 'translate3d(0, 0, 0)';
+          deckSlides[3].style.transform = 'translate3d(0, 0, 0)';
+          if (activeSlideNum) activeSlideNum.innerText = '04';
+          deckPills.forEach((p, i) => i === 3 ? p.classList.add('active') : p.classList.remove('active'));
+          wordElements.forEach(el => el.classList.add('active'));
+          if (aboutAuthor) aboutAuthor.style.opacity = 1;
+        }
+      }
+
+      // 3. Courses Section: 2-Second Smooth Scroll Fade-in Detection
+      if (coursesHeader) {
+        const headerRect = coursesHeader.getBoundingClientRect();
+        // Trigger fade-in when the element enters the bottom 85% of viewport
+        if (headerRect.top <= window.innerHeight * 0.85) {
+          coursesTitle.classList.add('fade-in-active');
+          coursesSubtitle.classList.add('fade-in-active');
+        } else {
+          coursesTitle.classList.remove('fade-in-active');
+          coursesSubtitle.classList.remove('fade-in-active');
+        }
+      }
+
+      // 4. Students Section: Smooth Fade-Up on Scroll
+      const studentsHeader = document.querySelector('.students-header');
+      if (studentsHeader) {
+        const sRect = studentsHeader.getBoundingClientRect();
+        if (sRect.top <= window.innerHeight * 0.85) {
+          document.querySelector('.students-main-title')?.classList.add('fade-up-active');
+          document.querySelector('.students-subtitle')?.classList.add('fade-up-active');
+        } else {
+          document.querySelector('.students-main-title')?.classList.remove('fade-up-active');
+          document.querySelector('.students-subtitle')?.classList.remove('fade-up-active');
+        }
+      }
+
+      // Animate each showcase row (tag pill and cards) as they enter view
+      const showcaseRows = document.querySelectorAll('.showcase-row');
+      showcaseRows.forEach(row => {
+        const rRect = row.getBoundingClientRect();
+        if (rRect.top <= window.innerHeight * 0.82) {
+          row.querySelector('.showcase-tag-wrapper')?.classList.add('fade-up-active');
+          row.querySelectorAll('.ba-card').forEach(c => c.classList.add('fade-up-active'));
+        } else {
+          row.querySelector('.showcase-tag-wrapper')?.classList.remove('fade-up-active');
+          row.querySelectorAll('.ba-card').forEach(c => c.classList.remove('fade-up-active'));
+        }
+      });
+
+      // 5. Journey Section: Smooth Fade-Up & Yellow Timeline Line Fill on Scroll
+      const journeySection = document.getElementById('journey');
+      const journeyHeader = document.querySelector('.journey-header');
+      const journeyTrack = document.getElementById('journeyLineTrack');
+      const journeyFill = document.getElementById('journeyLineFill');
+      const journeyStepRows = document.querySelectorAll('.journey-step-row');
+
+      if (journeyHeader) {
+        const jRect = journeyHeader.getBoundingClientRect();
+        if (jRect.top <= window.innerHeight * 0.85) {
+          document.querySelector('.journey-main-title')?.classList.add('fade-up-active');
+          document.querySelector('.journey-subtitle')?.classList.add('fade-up-active');
+        } else {
+          document.querySelector('.journey-main-title')?.classList.remove('fade-up-active');
+          document.querySelector('.journey-subtitle')?.classList.remove('fade-up-active');
+        }
+      }
+
+      if (journeyTrack && journeyFill) {
+        const trackRect = journeyTrack.getBoundingClientRect();
+        const triggerPoint = window.innerHeight * 0.6;
+        const totalHeight = trackRect.height;
+        const scrolled = triggerPoint - trackRect.top;
+        const progress = Math.min(Math.max(scrolled / totalHeight, 0), 1);
+        journeyFill.style.height = `${(progress * 100).toFixed(1)}%`;
+      }
+
+      journeyStepRows.forEach(row => {
+        const rowRect = row.getBoundingClientRect();
+        const triggerPoint = window.innerHeight * 0.72;
+        if (rowRect.top <= triggerPoint) {
+          row.classList.add('fade-up-active');
+        } else {
+          row.classList.remove('fade-up-active');
+        }
+
+        // Active dot pulse when line reaches the step dot center
+        const dot = row.querySelector('.journey-step-dot');
+        if (dot) {
+          const dotRect = dot.getBoundingClientRect();
+          if (dotRect.top <= window.innerHeight * 0.6) {
+            row.classList.add('passed');
+          } else {
+            row.classList.remove('passed');
+          }
+        }
+      });
+
+      // 6. Success Stories Section: Smooth Fade-Up on Scroll
+      const successHeader = document.querySelector('.success-header');
+      if (successHeader) {
+        const hRect = successHeader.getBoundingClientRect();
+        if (hRect.top <= window.innerHeight * 0.85) {
+          document.querySelector('.success-main-title')?.classList.add('fade-up-active');
+          document.querySelector('.success-subtitle')?.classList.add('fade-up-active');
+          document.querySelector('.success-rating-badge')?.classList.add('fade-up-active');
+        } else {
+          document.querySelector('.success-main-title')?.classList.remove('fade-up-active');
+          document.querySelector('.success-subtitle')?.classList.remove('fade-up-active');
+          document.querySelector('.success-rating-badge')?.classList.remove('fade-up-active');
+        }
+      }
+
+      // Animate testimonial cards fade-in upwards from bottom
+      const successCards = document.querySelectorAll('.success-card');
+      successCards.forEach(card => {
+        const cRect = card.getBoundingClientRect();
+        if (cRect.top <= window.innerHeight * 0.85) {
+          card.classList.add('fade-up-active');
+        } else {
+          card.classList.remove('fade-up-active');
+        }
+      });
+    });
+
+    // Handle Mega Menu Hover & Smooth Scroll on Click
+    const siteHeader = document.getElementById('siteHeader');
+    const megaMenuLi = document.querySelector('.has-mega-menu');
+    const megaMenuPanel = document.querySelector('.mega-menu-panel');
+
+    let menuTimer = null;
+
+    function openMegaMenu() {
+      clearTimeout(menuTimer);
+      megaMenuLi?.classList.add('is-active');
+      siteHeader?.classList.add('mega-menu-active');
+    }
+
+    function closeMegaMenu() {
+      menuTimer = setTimeout(() => {
+        megaMenuLi?.classList.remove('is-active');
+        siteHeader?.classList.remove('mega-menu-active');
+      }, 150);
+    }
+
+    megaMenuLi?.addEventListener('mouseenter', openMegaMenu);
+    megaMenuLi?.addEventListener('mouseleave', closeMegaMenu);
+    megaMenuPanel?.addEventListener('mouseenter', openMegaMenu);
+    megaMenuPanel?.addEventListener('mouseleave', closeMegaMenu);
+
+    // Smooth scroll for all anchor navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            // Close mega menu on click
+            megaMenuLi?.classList.remove('is-active');
+            siteHeader?.classList.remove('mega-menu-active');
+            
+            lenis.scrollTo(targetEl, {
+              offset: -70,
+              duration: 1.4,
+            });
+          }
+        }
+      });
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>
