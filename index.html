@@ -365,57 +365,144 @@
     /* ========================================================
        HERO & PARALLAX BACKGROUND SECTION
        ======================================================== */
+        /* ========================================================
+       HERO & SHOWCASE SECTION (CENTERED & PERFECTLY PADDED)
+       ======================================================== */
     .hero-viewport {
       position: relative;
       width: 100%;
-      min-height: 150vh;
+      min-height: auto;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: flex-start;
-      padding: 170px 48px 120px;
+      padding: 140px 48px 80px;
+      background: radial-gradient(circle at 50% 15%, #22160d 0%, #0d0907 70%);
     }
 
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(229, 137, 28, 0.12);
+      border: 1px solid rgba(229, 137, 28, 0.35);
+      border-radius: 999px;
+      color: #e5891c;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 860px;
+      margin: 0 auto 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4.5vw, 62px);
+      line-height: 1.14;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.82);
+      margin-bottom: 28px;
+      max-width: 620px;
+      font-weight: 400;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 8px 18px;
+      border-radius: 999px;
+    }
+
+    /* Centered Hero Showcase Container */
     .hero-bg-container {
-      position: absolute;
-      top: -10%;
-      left: 0;
+      position: relative;
       width: 100%;
-      height: 155%;
-      z-index: 1;
-      pointer-events: none;
-      will-change: transform;
+      max-width: 1200px;
+      aspect-ratio: 16 / 9.8;
+      z-index: 5;
+      margin: 0 auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(229, 137, 28, 0.28);
+      transform: none !important;
     }
 
     .hero-bg-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: center 25%;
       display: block;
     }
 
     .hero-overlay-horizontal {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: linear-gradient(90deg, rgba(15, 11, 8, 0.94) 0%, rgba(15, 11, 8, 0.75) 45%, rgba(15, 11, 8, 0.1) 68%, rgba(0, 0, 0, 0) 100%);
-      pointer-events: none;
+      display: none;
     }
 
     .hero-overlay-vertical {
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: linear-gradient(180deg, rgba(15, 11, 8, 0.5) 0%, rgba(15, 11, 8, 0) 25%, rgba(15, 11, 8, 0.2) 70%, rgba(15, 11, 8, 0.95) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(13, 9, 7, 0.6) 100%);
       pointer-events: none;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      max-width: 660px;
-      margin-left: 5vw;
+    @media (max-width: 768px) {
+      .hero-viewport {
+        padding: 120px 20px 50px;
+      }
+      .hero-title {
+        font-size: 32px;
+      }
+      .hero-actions-row {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .hero-bg-container {
+        border-radius: 16px;
+        aspect-ratio: 16 / 10.5;
+      }
     }
 
     .hero-title {
@@ -1620,7 +1707,7 @@
       }
     }
 
-    /* Why Choose Beautyco */
+    /* Why Choose HD Makeup Studio */
     .why-us-section {
       padding: 120px 48px;
       max-width: 1280px;
@@ -1873,45 +1960,47 @@
        HERO SECTION WITH PARALLAX SMOOTH BACKGROUND
        ======================================================== -->
   <section class="hero-viewport" id="hero">
-    <!-- Parallax Background Element -->
-    <div class="hero-bg-container" id="heroBg">
-      <img 
-        src="https://framerusercontent.com/images/UOxAQOqhYg1xsOUfElVSBr67M28.png?width=3600&height=2528" 
-        alt="Hero Background Hair Wash" 
-        class="hero-bg-img"
-      >
-    </div>
-
-    <!-- Overlays -->
-    <div class="hero-overlay-horizontal"></div>
-    <div class="hero-overlay-vertical"></div>
-
-    <!-- Hero Content -->
+    <!-- Centered Header Content -->
     <div class="hero-content" id="heroContent">
+      <div class="hero-badge-pill">
+        <i class="fa-solid fa-award"></i> Award-Winning Academy
+      </div>
       <h1 class="hero-title">Start your beauty career today</h1>
       <p class="hero-subtitle">
-        Learn hands-on hair, makeup, and skincare. Get certified, build real skills, and start earning with confidence.
+        Learn hands-on bridal makeup, hair styling, and skincare. Get certified, build real skills, and start earning with confidence.
       </p>
 
-      <div class="hero-buttons">
-        <a href="#enroll" class="btn-primary">Enroll Now</a>
-        <a href="#courses" class="btn-secondary">See Our Courses</a>
-      </div>
+      <div class="hero-actions-row">
+        <div class="hero-buttons">
+          <a href="#enroll" class="btn-primary">Enroll Now</a>
+          <a href="#courses" class="btn-secondary">See Our Courses</a>
+        </div>
 
-      <div class="hero-social-proof">
-        <div class="student-avatars">
-          <img src="https://framerusercontent.com/images/6bqqQLemAnKPgwERzUY8vwaCOo.png?width=176&height=176" alt="Student 1">
-          <img src="https://framerusercontent.com/images/EcsGlI5el5JhKRyOdYxl5ZBK6Ow.png?width=176&height=176" alt="Student 2">
-          <img src="https://framerusercontent.com/images/X7bT3eqLbcGGa3YZgE8EU88mEc.png?width=176&height=176" alt="Student 3">
-        </div>
-        <div class="rating-row">
-          <span class="stars">★★★★★</span>
-          <strong>5 Rated</strong>
-        </div>
-        <div class="sub-proof">
-          500+ Certified Beauty Professional
+        <div class="hero-social-proof">
+          <div class="student-avatars">
+            <img src="https://framerusercontent.com/images/6bqqQLemAnKPgwERzUY8vwaCOo.png?width=176&height=176" alt="Student 1">
+            <img src="https://framerusercontent.com/images/EcsGlI5el5JhKRyOdYxl5ZBK6Ow.png?width=176&height=176" alt="Student 2">
+            <img src="https://framerusercontent.com/images/X7bT3eqLbcGGa3YZgE8EU88mEc.png?width=176&height=176" alt="Student 3">
+          </div>
+          <div class="rating-row">
+            <span class="stars">★★★★★</span>
+            <strong>5 Rated</strong>
+          </div>
+          <div class="sub-proof">
+            500+ Certified
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Centered Award Ceremony Photo Showcase -->
+    <div class="hero-bg-container" id="heroBg">
+      <img 
+        src="hero_bg_real.jpg" 
+        alt="HD Makeup Studio Award Ceremony" 
+        class="hero-bg-img"
+      >
+      <div class="hero-overlay-vertical"></div>
     </div>
   </section>
 
